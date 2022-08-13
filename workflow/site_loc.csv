@@ -1,0 +1,7 @@
+SiteID,lat,lon,carbon_flux,Set
+US-Ne3,41.1651,263.5234,True,Set1
+US-Ro1,44.7143,266.9102,True,Set2
+US-UiC,40.0647,271.8017,True,Set3
+US-Bo1,40.0062,271.7096,False,Set3
+US-Br1,41.9749,266.3094,False,Set2
+US-IB1,41.8593,271.7773,False,Set3

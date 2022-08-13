@@ -57,16 +57,11 @@ Human, I.M. (2021). My output dataset name [Data set]. DataHub. https://doi.org/
 ## Contributing modeling software
 | Model | Version | Repository Link | DOI |
 |-------|---------|-----------------|-----|
-| model 1 | version | link to code repository | link to DOI dataset |
-| model 2 | version | link to code repository | link to DOI dataset |
-| component 1 | version | link to code repository | link to DOI dataset |
+| E3SM | version | https://github.com/E3SM-Project/E3SM | link to DOI dataset |
 
 ## Reproduce my experiment
-Fill in detailed info here or link to other documentation that is a thorough walkthrough of how to use what is in this repository to reproduce your experiment.
 
-
-1. Install the software components required to conduct the experiement from [Contributing modeling software](#contributing-modeling-software)
-2. Download and install the supporting input data required to conduct the experiement from [Input data](#input-data)
+1. Clone and install [E3SM](https://github.com/E3SM-Project/E3SM).
 3. Run the following scripts in the `workflow` directory to re-create this experiment:
 
 | Script Name | Description | How to Run |
@@ -82,8 +77,12 @@ Fill in detailed info here or link to other documentation that is a thorough wal
 | `compare.py` | Script to compare my outputs to the original | `python3 compare.py --orig /path/to/original/data.csv --new /path/to/new/data.csv` |
 
 ## Reproduce my figures
-Use the scripts found in the `figures` directory to reproduce the figures used in this publication.
+Use the following scripts found in the `workflow` directory to reproduce the figures used in this publication.
 
 | Script Name | Description | How to Run |
 | --- | --- | --- |
-| `generate_figures.py` | Script to generate my figures | `python3 generate_figures.py -i /path/to/inputs -o /path/to/outuptdir` |
+| `plot_site_loc.py` | Makes spatial plots showing Ameriflux site locations and three sub-regions of US-Midwest used for the regional run| `python plot_site_loc.py` |
+
+## Figures
+### Regional analysis
+1. [Ameriflux site locations and three sub-regions](figures/fig_Regions.png)
