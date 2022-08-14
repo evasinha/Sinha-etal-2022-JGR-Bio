@@ -487,4 +487,4 @@ def xr_plot_global(da_plot, fig_wt, fig_ht, fname):
     plt.close(fig=None)
     
     # Change directory    
-    os.chdir('../')
+    os.chdir('../workflow/')

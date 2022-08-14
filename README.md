@@ -82,7 +82,11 @@ Use the following scripts found in the `workflow` directory to reproduce the fig
 | Script Name | Description | How to Run |
 | --- | --- | --- |
 | `plot_site_loc.py` | Makes spatial plots showing Ameriflux site locations and three sub-regions of US-Midwest used for the regional run| `python plot_site_loc.py` |
+| `plot_ELM_output.py` | Makes spatial plots comparing impact of constant vs. varying parameters | `python plot_ELM_output.py` |
+| `merge_images.py` | Merge images to produce final plot | `merge_images.py` |
 
 ## Figures
 ### Regional analysis
 1. [Ameriflux site locations and three sub-regions](figures/fig_Regions.png)
+2. [Impact of constant vs. varying parameters on annual GPP](figures/fig_regional_Annual_GPP.png)
+2. [Impact of constant vs. varying parameters on annual ER](figures/fig_regional_Annual_ER.png)
