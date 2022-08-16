@@ -82,14 +82,14 @@ Use the following scripts found in the `workflow` directory to reproduce the fig
 | Script Name | Description | How to Run |
 | --- | --- | --- |
 | `plot_site_loc.py` | Makes spatial plots showing Ameriflux site locations and three sub-regions of US-Midwest used for the regional run| `python plot_site_loc.py` |
-| `plot_corn_soybean_cft_rotation.py` | Makes spatial plot of corn soybean CFT fraction and grid cells with corn soybean rotation | `pythong plot_corn_soybean_cft_rotation.py`|
+| `create_landuse_ts_corn_soy_rot.py` | Create land use timeseries for corn soybean rotation and make spatial plot of corn soybean CFT fraction and grid cells with corn soybean rotation | `python create_landuse_ts_corn_soy_rot.py`|
 | `plot_ELM_output.py` | Makes spatial plots comparing impact of constant vs. varying parameters | `python plot_ELM_output.py` |
-| `merge_images.py` | Merge images to produce final plot | `merge_images.py` |
+| `merge_images.py` | Merge images to produce final plot | `python merge_images.py` |
 
 ## Figures
 ### Regional analysis
 1. [Ameriflux site locations and three sub-regions](figures/fig_Regions.png)
-2. [Percent of corn and soybean crop functional type and fraction of grid cells with corn soybean rotation](figures/fig_regional_corn_soybean_cft_rotation/png)
+2. [Percent of corn and soybean crop functional type and fraction of grid cells with corn soybean rotation](figures/fig_regional_corn_soybean_cft_rotation.png)
 3. [Impact of constant vs. varying parameters on annual GPP](figures/fig_regional_Annual_GPP.png)
 4. [Impact of constant vs. varying parameters on annual ER](figures/fig_regional_Annual_ER.png)
 5. [Impact of constant vs. varying parameters on latent heat flux for summer](figures/fig_regional_Summer_months_LE.png)
