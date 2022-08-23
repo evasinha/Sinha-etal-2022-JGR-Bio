@@ -85,6 +85,10 @@ Use the following scripts found in the `workflow` directory to reproduce the fig
 | `create_landuse_ts_corn_soy_rot.py` | Create land use timeseries for corn soybean rotation and make spatial plot of corn soybean CFT fraction and grid cells with corn soybean rotation | `python create_landuse_ts_corn_soy_rot.py`|
 | `plot_ELM_output.py` | Makes spatial plots comparing impact of constant vs. varying parameters | `python plot_ELM_output.py` |
 | `merge_images.py` | Merge images to produce final plot | `python merge_images.py` |
+| `pft_regridding.py` | Read ELM h1 output in 2D vector format [time, pft] and convert to 4D vector format [time, pft, lat, lon] | `python pft_regridding.py` |
+| `plot_ELM_pft_regridded.py` | Makes spatial plots comparing impact of constant vs. varying parameters at pft level | `python plot_ELM_pft_regridded.py`|
+| `plot_annual_site_model_obs.py` | Make bar plot comparing annual simulated vs observed fluxes at AmeriFlux sites | `python plot_annual_site_model_obs.py`|
+| `plot_monthly_site_model_obs.py` | Make line plot comparing monthly simulated vs observed fluxes at AmeriFlux sites | `python plot_monthly_site_model_obs.py`|
 
 ## Figures
 ### Regional analysis
@@ -96,3 +100,7 @@ Use the following scripts found in the `workflow` directory to reproduce the fig
 6. [Impact of constant vs. varying parameters on sensible heat flux for summer](figures/fig_regional_Summer_months_H.png)
 7. [Comparing simulated annual GPP to FluxCom estimates](figures/fig_regional_GPP_Model_vs_FluxCom.png)
 8. [Comparing simulated annual GPP to Madani and Parazoo (2020) estimates](figures/fig_regional_GPP_Model_vs_Madani_et_al.png)
+9. [Impact of constant vs. varying parameters on annual GPP at pft level](figures/fig_regional_Annual_GPP_cft.png)
+10. [Comparison of simulated and observed annual GPP at AmeriFlux calibration/validation sites](figures/Sitelevel_Annual_GPP_pft.png)
+11. [Comparison of simulated and observed monthly GPP at AmeriFlux calibration/validation sites](figures/Sitelevel_GPP_pft_lineplot.png)
+12. [Comparison of simulated and observed monthly latent heat flux at AmeriFlux calibration/validation sites](figures/Sitelevel_EFLX_LH_TOT_pft_lineplot.png)

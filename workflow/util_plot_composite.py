@@ -160,14 +160,17 @@ def create_plot_regridded_composite(da_plot_merge, var, plot_row, time_period, f
 
    if(var == 'DMYIELD'):
 
-      obs_fpath      = '/qfs/people/sinh210/wrk/E3SM_SFA/ELM-Bioenergy/obsdata/USDA_NASS/'
-      geo_county =  merge_county_shp_USDA_yield(obs_fpath)
+      corn_yield = read_USDA_NASS_yield(USDA_NASS_fpath, USDA_NASS_corn_fname, USDA_NASS_corn_conv_factor, col_name='Corn_ton_ha')
+      soy_yield  = read_USDA_NASS_yield(USDA_NASS_fpath, USDA_NASS_soy_fname,  USDA_NASS_soy_conv_factor,  col_name='Soy_ton_ha')
+
+      obs_fpath  = '/qfs/people/sinh210/wrk/E3SM_SFA/ELM-Bioenergy/obsdata/USDA_NASS/'
+      geo_county =  merge_county_shp_USDA_yield(obs_fpath, corn_yield, soy_yield)
 
       # Write xarray to a new NetCDF file
-      os.chdir('composite_grids')
+      os.chdir('../composite_grids/')
       composite_grid.to_netcdf(path='yield_Composite.nc', mode='w')
       no_rot_composite_grid.to_netcdf(path='yield_No_rot_Composite.nc', mode='w')
-      os.chdir('../')
+      os.chdir('../workflow/')
 
       #plot_obs_model_yield(composite_grid, geo_county)
 

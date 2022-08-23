@@ -53,7 +53,7 @@ myDict_merge_3images = {'fig_regional_Annual_GPP.png': {'im1': 'fig_regional_Ann
                                                         'im2': 'fig_regional_Annual_ER_diff.png',
                                                         'im3': 'fig_regional_Annual_ER_per_diff.png'}}
 
-myDict_merge_2images_vert = {'fig_regional_GPP_Model_vs_Fluxcom.png':      {'im1': 'fig_regional_Annual_GPP_Model_vs_FluxCom_Default.png',
+myDict_merge_2images_vert = {'fig_regional_GPP_Model_vs_FluxCom.png':      {'im1': 'fig_regional_Annual_GPP_Model_vs_FluxCom_Default.png',
                                                                             'im2': 'fig_regional_Annual_GPP_Model_vs_FluxCom_Default_per_diff.png'},
                              'fig_regional_GPP_Model_vs_Madani_et_al.png': {'im1': 'fig_regional_Annual_GPP_Model_vs_Madani_et_al_Default.png',
                                                                             'im2': 'fig_regional_Annual_GPP_Model_vs_Madani_et_al_Default_per_diff.png'}}
@@ -62,7 +62,9 @@ myDict_merge_2images_horiz = {'fig_regional_Summer_months_LE.png':{'im1':'Summer
                               'fig_regional_Summer_months_H.png': {'im1':'Summer_months_FSH_Composite.png',
                                                                    'im2':'Summer_months_FSH_per_diff.png'},
                               'fig_regional_corn_soybean_cft_rotation.png': {'im1':'corn_soybean_cft_percent.png',
-                                                                             'im2':'hist_trans_US_c4ann_to_c3nfx_gt_5per.png'}}
+                                                                             'im2':'hist_trans_US_c4ann_to_c3nfx_gt_5per.png'},
+                              'fig_regional_Annual_GPP_cft.png':{'im1':'fig_regional_Annual_GPP_cft_Composite.png',
+                                                                 'im2':'fig_regional_Annual_GPP_cft_diff.png'}}
 
 fpath = '../figures/'
 
