@@ -67,6 +67,7 @@ Use the following scripts found in the `workflow` directory to reproduce the fig
 | Script Name | Description | How to Run |
 | --- | --- | --- |
 | `plot_site_loc.py` | Makes spatial plots showing Ameriflux site locations and three sub-regions of US-Midwest used for the regional run| `python plot_site_loc.py` |
+| `run_site_calib_outputs.sh` | Makes plots of sensitivity analysis for all three calibration sites |`./run_site_calib_outputs.sh` |
 | `create_landuse_ts_corn_soy_rot.py` | Create land use timeseries for corn soybean rotation and make spatial plot of corn soybean CFT fraction and grid cells with corn soybean rotation | `python create_landuse_ts_corn_soy_rot.py`|
 | `plot_ELM_output.py` | Makes spatial plots comparing impact of constant vs. varying parameters | `python plot_ELM_output.py` |
 | `merge_images.py` | Merge images to produce final plot | `python merge_images.py` |
@@ -76,6 +77,12 @@ Use the following scripts found in the `workflow` directory to reproduce the fig
 | `plot_monthly_site_model_obs.py` | Make line plot comparing monthly simulated vs observed fluxes at AmeriFlux sites | `python plot_monthly_site_model_obs.py`|
 
 ## Figures
+
+### Site-scale calibration & validation
+1. [Sensitivity analysis plot for US-Ne3](figures/fig_SA_US-Ne3.png)
+2. [Sensitivity analysis plot for US-Ro1](figures/fig_SA_US-Ro1.png)
+3. [Sensitivity analysis plot for US-UiC](figures/fig_SA_US-UiC.png)
+
 ### Regional analysis
 1. [Ameriflux site locations and three sub-regions](figures/fig_Regions.png)
 2. [Percent of corn and soybean crop functional type and fraction of grid cells with corn soybean rotation](figures/fig_regional_corn_soybean_cft_rotation.png)

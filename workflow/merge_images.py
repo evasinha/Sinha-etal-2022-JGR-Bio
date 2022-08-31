@@ -57,14 +57,20 @@ myDict_merge_2images_vert = {'fig_regional_GPP_Model_vs_FluxCom.png':      {'im1
                                                                             'im2': 'fig_regional_Annual_GPP_Model_vs_FluxCom_Default_per_diff.png'},
                              'fig_regional_GPP_Model_vs_Madani_et_al.png': {'im1': 'fig_regional_Annual_GPP_Model_vs_Madani_et_al_Default.png',
                                                                             'im2': 'fig_regional_Annual_GPP_Model_vs_Madani_et_al_Default_per_diff.png'}}
-myDict_merge_2images_horiz = {'fig_regional_Summer_months_LE.png':{'im1':'Summer_months_EFLX_LH_TOT_Composite.png',
+myDict_merge_2images_horiz = {'fig_SA_US-Ne3.png':                {'im1':'US-Ne3_Corn_sens_main_all.png',
+                                                                   'im2':'US-Ne3_Soybean_sens_main_all.png'},
+                              'fig_SA_US-Ro1.png':                {'im1':'US-Ro1_Corn_sens_main_all.png',
+                                                                   'im2':'US-Ro1_Soybean_sens_main_all.png'},
+                              'fig_SA_US-UiC.png':                {'im1':'US-UiC_Corn_sens_main_all.png',
+                                                                   'im2':'US-UiC_Soybean_sens_main_all.png'},
+                              'fig_regional_Summer_months_LE.png':{'im1':'Summer_months_EFLX_LH_TOT_Composite.png',
                                                                    'im2':'Summer_months_EFLX_LH_TOT_per_diff.png'},
                               'fig_regional_Summer_months_H.png': {'im1':'Summer_months_FSH_Composite.png',
                                                                    'im2':'Summer_months_FSH_per_diff.png'},
                               'fig_regional_corn_soybean_cft_rotation.png': {'im1':'corn_soybean_cft_percent.png',
                                                                              'im2':'hist_trans_US_c4ann_to_c3nfx_gt_5per.png'},
-                              'fig_regional_Annual_GPP_cft.png':{'im1':'fig_regional_Annual_GPP_cft_Composite.png',
-                                                                 'im2':'fig_regional_Annual_GPP_cft_diff.png'}}
+                              'fig_regional_Annual_GPP_cft.png':  {'im1':'fig_regional_Annual_GPP_cft_Composite.png',
+                                                                    'im2':'fig_regional_Annual_GPP_cft_diff.png'}}
 
 fpath = '../figures/'
 
