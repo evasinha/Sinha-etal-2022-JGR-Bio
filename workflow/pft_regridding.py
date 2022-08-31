@@ -175,11 +175,14 @@ fpath  = '/compyfs/sinh210/e3sm_scratch/' + caseid + '/run/'
 # When plotting the whole grid we use GPP with the pct_crop and pct_cft weights being applied
 # When plotting outputs to observations for corn/soybean only the percent fraction 
 # is not applied since we are only focussing on the fraction of the grid with corn/soybean on it.
-out_fname = caseid + '_regridded.nc'
-#out_fname = caseid + '_regridded_weight_applied.nc'
+#out_fname = caseid + '_regridded.nc'
+out_fname = caseid + '_regridded_weight_applied.nc'
 
-varnames = ['GPP', 'EFLX_LH_TOT', 'DMYIELD', 'PLANTDAY', 'HARVESTDAY', 'TLAI', 'LEAFC']
-#varnames = ['GPP']
+#varnames = ['GPP', 'EFLX_LH_TOT', 'DMYIELD', 'PLANTDAY', 'HARVESTDAY', 'TLAI', 'LEAFC']
+varnames = ['GPP']
+
+sel_lon = 263.5234
+sel_lat = 41.1651
 
 yr_start = 2001
 yr_end   = 2014
@@ -197,14 +200,20 @@ for ind, var in enumerate(varnames):
    #fname = '/compyfs/sinh210/mygetregionaldata/landuse.timeseries_20x34pt_f19_US_Midwest_sub_cru_hist_50pfts_c220413.nc'
    lu_ts = xr.open_mfdataset(fname)
 
-   output_reshape_cropwts = output_reshape
-   #if(var == 'GPP'):
-   #    # Apply crop weight mask to cfts
-   #    output_reshape_cropwts = apply_cropwts_cft(lu_ts, yr_start, yr_end, output_reshape)
-   #else:
-   #    # Skip applying crop weight masks to cfts
-   #    output_reshape_cropwts = output_reshape
+   print('variable is ', var)
+   print(output_reshape.interp(years=2005, month=7, lat=sel_lat, lon=sel_lon).values)
 
+   #output_reshape_cropwts = output_reshape
+   if(var == 'GPP'):
+       # Apply crop weight mask to cfts
+       output_reshape_cropwts = apply_cropwts_cft(lu_ts, yr_start, yr_end, output_reshape)
+   else:
+       # Skip applying crop weight masks to cfts
+       output_reshape_cropwts = output_reshape
+
+   print(output_reshape_cropwts.interp(years=2005, month=7, lat=sel_lat, lon=sel_lon).values)
+
+   # Reshape years x month to time dimension
    # Reshape years x month to time dimension
    output_reshape_final = reshape_time_dim(output_reshape_cropwts, mod_ds, pftname)
 
@@ -220,6 +229,5 @@ for ind, var in enumerate(varnames):
       mod_ds_regridded = xr.merge([mod_ds_regridded, output_reshape_final])
 
 # Write xarray to a new NetCDF file
-os.chdir('../regridded_output/')
+os.chdir('/compyfs/sinh210/e3sm_scratch/regridded_output/')
 mod_ds_regridded.to_netcdf(path=out_fname, mode='w')
-os.chdir('../workflow/')

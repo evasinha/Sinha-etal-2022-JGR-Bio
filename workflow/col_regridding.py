@@ -203,7 +203,5 @@ for ind, var in enumerate(varnames):
       mod_ds_regridded = xr.merge([mod_ds_regridded, output_reshape_final])
 
 # Write xarray to a new NetCDF file
-os.chdir('../regridded_output/')
+os.chdir('/compyfs/sinh210/e3sm_scratch/regridded_output/')
 mod_ds_regridded.to_netcdf(path=out_fname, mode='w')
-os.chdir('../workflow/')
-

@@ -44,7 +44,7 @@ for ind, var in enumerate(varnames):
    for i, key in enumerate(myDict_caseid):
 
       # Read ELM model output for select variables
-      fpath = '../regridded_output/'
+      fpath = '/compyfs/sinh210/e3sm_scratch/regridded_output/'
       if(var in ['GPP','EFLX_LH_TOT']):
          fname = myDict_caseid[key] + '_regridded.nc'
       

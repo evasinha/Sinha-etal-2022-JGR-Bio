@@ -21,7 +21,7 @@ from util_plot_composite import *
 
 # ---------- Plot annual fluxes ----------
 # filepath for ELM regridded pft level outputs
-fpath  = '/qfs/people/sinh210/wrk/E3SM_SFA/ELM-Bioenergy/spatial_plots/regridded_output/'
+fpath = '/compyfs/sinh210/e3sm_scratch/regridded_output/'
 
 # List of variable names that we want to keep
 varnames = ['GPP', 'DMYIELD', 'PLANTDAY', 'HARVESTDAY']
