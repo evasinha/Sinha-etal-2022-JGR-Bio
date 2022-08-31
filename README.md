@@ -54,12 +54,6 @@ Sinha, E., Bond-Lamberty B., Calvin, K.V., Bisht, G., Drewniak, B., Bernacchi, C
 ## Reproduce my experiment
 
 1. Clone and install [E3SM](https://github.com/E3SM-Project/E3SM).
-3. Run the following scripts in the `workflow` directory to re-create this experiment:
-
-| Script Name | Description | How to Run |
-| --- | --- | --- |
-| `step_one.py` | Script to run the first part of my experiment | `python3 step_one.py -f /path/to/inputdata/file_one.csv` |
-| `step_two.py` | Script to run the last part of my experiment | `python3 step_two.py -o /path/to/my/outputdir` |
 
 ## Reproduce my figures
 Use the following scripts found in the `workflow` directory to reproduce the figures used in this publication.
@@ -82,6 +76,16 @@ Use the following scripts found in the `workflow` directory to reproduce the fig
 1. [Sensitivity analysis plot for US-Ne3](figures/fig_SA_US-Ne3.png)
 2. [Sensitivity analysis plot for US-Ro1](figures/fig_SA_US-Ro1.png)
 3. [Sensitivity analysis plot for US-UiC](figures/fig_SA_US-UiC.png)
+4. [Model validation comparing observed vs. modeled fluxes for US-Ne3](figures/fig_US-Ne3_validation.png)
+5. [Model validation comparing observed vs. modeled fluxes for US-Ro1](figures/fig_US-Ro1_validation.png)
+6. [Model validation comparing observed vs. modeled fluxes for US-UiC](figures/fig_US-UiC_validation.png)
+7. [Model validation comparing observed vs. modeled LAI for US-Ne3](figures/fig_US-Ne3_LAI.png)
+8. [Model validation comparing observed vs. modeled LAI for US-Ro1](figures/fig_US-Ro1_LAI.png)
+9. [Model validation comparing observed vs. modeled LAI for US-UiC](figures/fig_US-UiC_LAI.png)
+10. [Model validation comparing observed vs. modeled harvest for US-Ne3](figures/fig_US-Ne3_harvest.png)
+11. [Model validation comparing observed vs. modeled harvest for US-Ro1](figures/fig_US-Ro1_harvest.png)
+12. [Model validation comparing observed vs. modeled harvest for US-UiC](figures/fig_US-UiC_harvest.png)
+13. [Impact of crop rotation on annual GPP](figures/20220328_corn_soybean_US-Ne3_corn_annual_GPP.png)
 
 ### Regional analysis
 1. [Ameriflux site locations and three sub-regions](figures/fig_Regions.png)

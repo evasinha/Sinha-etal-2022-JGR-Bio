@@ -1,0 +1,10 @@
+varnames,orig_unit,conv_factor,ylabel
+G,W m-2,1,G [$W~m^{-2}$]
+LE,W m-2,1,EFLX_LH_TOT [$W~m^{-2}$]
+H,W m-2,1,FSH_LH_TOT [$W~m^{-2}$]
+TA,C,1,TA [C]
+RH,%,1,RH [%]
+P,mm,1,P [mm]
+WS,m sec-1,1,WIND [$m^sec{-1}$]
+PA,Pa,1000,PSRF [Pa]
+SW_IN,W m-2,1,FSDS [$W~m^{-2}$]
