@@ -61,7 +61,7 @@ Use the following scripts found in the `workflow` directory to reproduce the fig
 | Script Name | Description | How to Run |
 | --- | --- | --- |
 | `plot_site_loc.py` | Makes spatial plots showing Ameriflux site locations and three sub-regions of US-Midwest used for the regional run| `python plot_site_loc.py` |
-| `run_site_calib_outputs.sh` | Makes plots of sensitivity analysis for all three calibration sites |`./run_site_calib_outputs.sh` |
+| `run_site_calib_outputs.sh` | Makes plots of sensitivity analysis and model calibration for all three calibration sites |`./run_site_calib_outputs.sh` |
 | `create_landuse_ts_corn_soy_rot.py` | Create land use timeseries for corn soybean rotation and make spatial plot of corn soybean CFT fraction and grid cells with corn soybean rotation | `python create_landuse_ts_corn_soy_rot.py`|
 | `plot_ELM_output.py` | Makes spatial plots comparing impact of constant vs. varying parameters | `python plot_ELM_output.py` |
 | `merge_images.py` | Merge images to produce final plot | `python merge_images.py` |
@@ -76,6 +76,9 @@ Use the following scripts found in the `workflow` directory to reproduce the fig
 1. [Sensitivity analysis plot for US-Ne3](figures/fig_SA_US-Ne3.png)
 2. [Sensitivity analysis plot for US-Ro1](figures/fig_SA_US-Ro1.png)
 3. [Sensitivity analysis plot for US-UiC](figures/fig_SA_US-UiC.png)
+4. [Model calibration comparing observed vs. modeled fluxes for US-Ne3](figures/fig_US-Ne3_calibration.png)
+5. [Model calibration comparing observed vs. modeled fluxes for US-Ro1](figures/fig_US-Ro1_calibration.png)
+6. [Model calibration comparing observed vs. modeled fluxes for US-UiC](figures/fig_US-UiC_calibration.png)
 4. [Model validation comparing observed vs. modeled fluxes for US-Ne3](figures/fig_US-Ne3_validation.png)
 5. [Model validation comparing observed vs. modeled fluxes for US-Ro1](figures/fig_US-Ro1_validation.png)
 6. [Model validation comparing observed vs. modeled fluxes for US-UiC](figures/fig_US-UiC_validation.png)
