@@ -1,6 +1,6 @@
 _your zenodo badge here_
 
-# Sinha\_etal\_2022\_GMD
+# Sinha\_etal\_2022\_JGR_Bio
 
 **The Impact of Crop Rotation and Spatially Varying Crop Parameters in the E3SM Land Model (ELMv2)**
 
@@ -16,18 +16,16 @@ Eva Sinha<sup>1\*</sup>, Ben Bond-Lamberty<sup>2</sup>, Katherine V. Calvin<sup>
 \* corresponding author:  eva.sinha@pnnl.gov
 
 ## Abstract
-Earth System Models (ESMs) are increasingly representing agriculture due to its impact on local and regional climate and fundamental importance for human society.
-Realistic large scale simulations may require spatially varying crop parameters and common crop management practices, but their importance is uncertain, and they are often not represented in ESMs. 
-In this study, we examine the impact of using constant vs. varying crop parameters on a novel, realistic crop rotation scenario in the Energy Exascale Earth System Model (E3SM) Land Model (ELMv2).
+Earth System Models (ESMs) are increasingly representing agriculture due to its impact on biogeochemical cycles, local and regional climate, and fundamental importance for human society.
+Realistic large scale simulations may require spatially varying crop parameters, that capture crop growth at various scales and among different cultivars, and common crop management practices, but their importance is uncertain, and they are often not represented in ESMs. 
+In this study, we examine the impact of using constant vs. spatially varying crop parameters on a novel, realistic crop rotation scenario in the Energy Exascale Earth System Model (E3SM) Land Model version 2 (ELMv2).
 We implemented crop rotation by using ELMv2's dynamic land unit capability, and then calibrated and validated the model against observations collected at three AmeriFlux sites in the US Midwest with corn soybean rotation.
 The calibrated model closely captured the magnitude and observed seasonality of carbon and energy fluxes across crops and sites. 
 We performed regional simulations for the US Midwest using the calibrated model and found that spatially varying only few crop parameters across the region, as opposed to using constant parameters, had a large impact, with the carbon fluxes varying by up to 40\% and energy fluxes by up to 30\%. 
-These results imply that large scale ESM simulations using spatially invariant crop parameters may result in biased flux estimation from agricultural land, and underline the importance of improving human-earth systems interactions in ESMs.
+These results imply that large scale ESM simulations using spatially invariant crop parameters may result in biased energy and carbon fluxes estimation from agricultural land, and underline the importance of improving human-earth systems interactions in ESMs.
 
 ## Journal reference
-Sinha, E., Bond-Lamberty B., Calvin, K.V., Bisht, G., Drewniak, B., Bernacchi, C., Blakely, B., Moore, C., 2022. The Impact of Crop Rotation and Spatially Varying Crop Parameters in the E3SM Land Model (ELMv2). (In progress) Journal_TBD, DOI: XXXX
-
-
+Sinha, E., Bond-Lamberty B., Calvin, K.V., Bisht, G., Drewniak, B., Bernacchi, C., Blakely, B., Moore, C., 2022. The Impact of Crop Rotation and Spatially Varying Crop Parameters in the E3SM Land Model (ELMv2). (In progress) JGR Biogeosciences, Submitted
 
 ## Code reference
 Sinha, E., Bond-Lamberty B., Calvin, K.V., Bisht, G., Drewniak, B., Bernacchi, C., Blakely, B., Moore, C., 2022. Supporting code for Sinha et al. 2022 - TBD [Code]. Zenodo. http://doi.org/some-doi-number/zenodo.7777777
