@@ -1,4 +1,4 @@
-https://zenodo.org/badge/DOI/10.5281/zenodo.7079897.svg
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7079897.svg)](https://doi.org/10.5281/zenodo.7079897)
 
 # Sinha\_etal\_2022\_JGR_Bio
 
@@ -42,7 +42,7 @@ Reference for each minted data source for your input data.  For example:
 
 
 ### Output data
-Sinha, E., Bond-Lamberty B., Calvin, K.V., Bisht, G., Drewniak, B., Bernacchi, C., Blakely, B., Moore, C., 2022. Supporting data for Sinha et al. 2022 - TBD [Code]. Zenodo. http://doi.org/some-doi-number/zenodo.7777777
+Sinha, E., Bond-Lamberty B., Calvin, K.V., Bisht, G., Drewniak, B., Bernacchi, C., Blakely, B., Moore, C., 2022. Supporting data for Sinha et al. 2022 - TBD [Code]. Zenodo. http://doi.org/10.5281/zenodo.7080036
 
 ## Contributing modeling software
 | Model | Version | Repository Link | DOI |
