@@ -1,4 +1,4 @@
-_your zenodo badge here_
+https://zenodo.org/badge/DOI/10.5281/zenodo.7079897.svg
 
 # Sinha\_etal\_2022\_JGR_Bio
 
@@ -25,10 +25,10 @@ We performed regional simulations for the US Midwest using the calibrated model 
 These results imply that large scale ESM simulations using spatially invariant crop parameters may result in biased energy and carbon fluxes estimation from agricultural land, and underline the importance of improving human-earth systems interactions in ESMs.
 
 ## Journal reference
-Sinha, E., Bond-Lamberty B., Calvin, K.V., Bisht, G., Drewniak, B., Bernacchi, C., Blakely, B., Moore, C., 2022. The Impact of Crop Rotation and Spatially Varying Crop Parameters in the E3SM Land Model (ELMv2). (In progress) JGR Biogeosciences, Submitted
+Sinha, E., Bond-Lamberty B., Calvin, K.V., Bisht, G., Drewniak, B., Bernacchi, C., Blakely, B., Moore, C., 2022. The Impact of Crop Rotation and Spatially Varying Crop Parameters in the E3SM Land Model (ELMv2). JGR Biogeosciences (Submitted).
 
 ## Code reference
-Sinha, E., Bond-Lamberty B., Calvin, K.V., Bisht, G., Drewniak, B., Bernacchi, C., Blakely, B., Moore, C., 2022. Supporting code for Sinha et al. 2022 - TBD [Code]. Zenodo. http://doi.org/some-doi-number/zenodo.7777777
+Sinha, E., Bond-Lamberty B., Calvin, K.V., Bisht, G., Drewniak, B., Bernacchi, C., Blakely, B., Moore, C., 2022. Supporting code for Sinha et al. 2022 - JGR-Biogeosciences (Submitted) [Code]. Zenodo. https://doi.org/10.5281/zenodo.7079897
 
 ## Data reference
 
