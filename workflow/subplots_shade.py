@@ -180,7 +180,7 @@ for i, key in enumerate(myDict):
                   prior_output[:, ind_plot].T, cmap=cm.OrRd, grid_show=True)
     if post_out_flag:
         plot_shade(thisax, xdata,
-                  post_output[:, ind_plot].T, grid_show=True)
+                  post_output[:, ind_plot].T, nq=21, grid_show=True)
 
 
     #thisax.set_xticks(xdata)

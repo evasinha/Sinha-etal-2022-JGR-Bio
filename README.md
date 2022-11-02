@@ -71,9 +71,9 @@ Use the following scripts found in the `workflow` directory to reproduce the fig
 ## Figures
 
 ### Site-scale calibration & validation
-1. [Sensitivity analysis plot for US-Ne3](figures/fig_SA_US-Ne3.png)
-2. [Sensitivity analysis plot for US-Ro1](figures/fig_SA_US-Ro1.png)
-3. [Sensitivity analysis plot for US-UiC](figures/fig_SA_US-UiC.png)
+1. [Sensitivity analysis plot for US-Ne3](figures/fig_SA_US-Ne3_NEW.png)
+2. [Sensitivity analysis plot for US-Ro1](figures/fig_SA_US-Ro1_NEW.png)
+3. [Sensitivity analysis plot for US-UiC](figures/fig_SA_US-UiC_NEW.png)
 4. [Model calibration comparing observed vs. modeled fluxes for US-Ne3](figures/fig_US-Ne3_calibration.png)
 5. [Model calibration comparing observed vs. modeled fluxes for US-Ro1](figures/fig_US-Ro1_calibration.png)
 6. [Model calibration comparing observed vs. modeled fluxes for US-UiC](figures/fig_US-UiC_calibration.png)
