@@ -55,7 +55,7 @@ all_mon_str = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', '
 fig_extent  = [-99.5, -82, 36.75, 47.25]
 
 yr_start = 2001
-yr_end   = 2014
+yr_end   = 2010
 
 # ---------- FluxCom data ----------
 FluxCom_METEO_ALL_fpath = '/qfs/people/sinh210/wrk/E3SM_SFA/ELM-Bioenergy/obsdata/FluxCom/CarbonFluxes/RS_METEO/ensemble/ALL/monthly/'

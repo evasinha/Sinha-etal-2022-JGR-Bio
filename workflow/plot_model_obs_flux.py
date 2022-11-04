@@ -56,6 +56,9 @@ def read_clip_Madani_et_al_data(var, time_period, select_month, obs_dataset):
    # Clip to Midwest region
    da_plot = clip_to_midwest_region(ds, var)
 
+   # Subset data to keep only years between yr_start and yr_end
+   da_plot = da_plot.sel(time = da_plot.time.dt.year.isin(range(yr_start, yr_end+1)))
+
    if(time_period == 'Annual'):
       # Estimate mean annual from monthly data
       da_plot = create_mean_annual_da(da_plot, var, 1, est_mon_total=True)
@@ -157,7 +160,7 @@ def plot_model_obs_flux(da_plot_merge, var, time_period, fname_abb, obs_dataset,
    # Plot after dropping Composite label from dataset
    cmap_col = 'bwr'
    if(time_period == 'Annual'):
-      output = open('../figures/' + obs_dataset + '_stats.txt','w')
+      output = open('../figures/' + obs_dataset + ' ' + comp_set + '_stats.txt','w')
       output.write('Average difference between ' + obs_dataset + ' ' + comp_set + ' set for ' + \
                    var  + ' ' + str(round(np.nanmean(da_plot_merge.sel(Set=[comp_set]).values),2)) + '\n')
       output.write('Average difference between ' + obs_dataset + ' Composite set for ' + \
@@ -197,3 +200,99 @@ def plot_model_obs_flux(da_plot_merge, var, time_period, fname_abb, obs_dataset,
                          cmap_col=cmap_col, cbar_label='% difference', fig_wt=5*2+0.3, fig_ht=5*(len(sum_mon))+0.7, \
                          fig_extent=fig_extent, show_states=True, fname=fname_abb+'_'+var+'_Model_vs_'+obs_dataset+'_'+comp_set+'_per_diff.png')
 
+#----------------------------------------------------------
+# Make plot comparing Composite, Set1, Set2, and Set3 to observations
+def plot_model_obs_flux_3sets(da_plot_merge, var, time_period, fname_abb, obs_dataset):
+
+   if(obs_dataset == 'FluxCom'):
+      # Read FluxCom data, clip to Midwest region, and estimate mean annual
+      obs_da_plot = read_clip_FluxCom_data(var, time_period, fname_abb, obs_dataset)
+   if(obs_dataset == 'Madani_et_al'):
+      # Read Madani et al data, clip to Midwest region, and estimate mean annual
+      obs_da_plot = read_clip_Madani_et_al_data(var, time_period, fname_abb, obs_dataset)
+   if(obs_dataset == 'MODIS'):
+      # Read MOD17A2H data and estimate mean annual
+      obs_da_plot = read_MODIS_data(var, time_period, fname_abb, obs_dataset)
+
+   # Rename dataarray
+   da_plot_merge = da_plot_merge.rename(var)
+
+   da_plot_merge = xr.merge([obs_da_plot, da_plot_merge.sel(Set=['Composite','Set1','Set2','Set3'], variable=var)])
+
+   da_plot_merge = da_plot_merge.to_array()
+
+   # Create facet plot showing results for various sets in different columns
+   cmap_col = 'jet'
+   if(time_period == 'Annual'):
+      facet_plot_US(da_plot_merge.sel(Set=[obs_dataset,'Composite','Set1','Set2','Set3']), \
+                    subplot_titles='', colplot='Set', colwrap=5, \
+                    cmap_col=cmap_col, cbar_label=myDict_labels[time_period][var], fig_wt=5*5, fig_ht=8, \
+                    fig_extent=fig_extent, show_states=True, fname=fname_abb+'_'+var+'_Model_vs_'+obs_dataset+'_3sets.png')
+   elif(time_period == 'Monthly'):
+      facet_grid_plot_US(da_plot_merge.sel(Set=[obs_dataset,'Composite','Set1','Set2','Set3']),
+                         colplot='Set', rowplot='month', \
+                         cmap_col=cmap_col, cbar_label=myDict_labels[time_period][var], fig_wt=5*5+0.3, fig_ht=5*(len(sum_mon))+0.7, \
+                         fig_extent=fig_extent, show_states=True, fname=fname_abb+'_'+var+'_Model_vs_'+obs_dataset+'_3sets.png')
+
+   # Compute difference between set and composite set
+   da_plot_merge.loc[:,'Composite',:,:] = da_plot_merge.loc[:,'Composite',:,:] - da_plot_merge.loc[:,obs_dataset,:,:]
+   da_plot_merge.loc[:,'Set1',:,:] = da_plot_merge.loc[:,'Set1',:,:] - da_plot_merge.loc[:,obs_dataset,:,:]
+   da_plot_merge.loc[:,'Set2',:,:] = da_plot_merge.loc[:,'Set2',:,:] - da_plot_merge.loc[:,obs_dataset,:,:]
+   da_plot_merge.loc[:,'Set3',:,:] = da_plot_merge.loc[:,'Set3',:,:] - da_plot_merge.loc[:,obs_dataset,:,:]
+
+   # Plot after dropping observations label from dataset
+   cmap_col = 'bwr'
+   if(time_period == 'Annual'):
+      output = open('../figures/' + obs_dataset + '_stats_3sets.txt','w')
+      output.write('Average difference between ' + obs_dataset + ' Composite set for ' + \
+                   var  + ' ' + str(round(np.nanmean(da_plot_merge.sel(Set=['Composite']).values),2)) + '\n')
+      output.write('Average difference between ' + obs_dataset + ' Set1 set for ' + \
+                   var  + ' ' + str(round(np.nanmean(da_plot_merge.sel(Set=['Set1']).values),2)) + '\n')
+      output.write('Average difference between ' + obs_dataset + ' Set2 set for ' + \
+                   var  + ' ' + str(round(np.nanmean(da_plot_merge.sel(Set=['Set2']).values),2)) + '\n')
+      output.write('Average difference between ' + obs_dataset + ' Set3 set for ' + \
+                   var  + ' ' + str(round(np.nanmean(da_plot_merge.sel(Set=['Set3']).values),2)) + '\n')
+      facet_plot_US(da_plot_merge.sel(Set=['Composite','Set1','Set2','Set3']), \
+                    subplot_titles='', colplot='Set', colwrap=4, \
+                    cmap_col=cmap_col, cbar_label=myDict_labels[time_period][var], fig_wt=5*4, fig_ht=8, \
+                    fig_extent=fig_extent, show_states=True, fname=fname_abb+'_'+var+'_Model_vs_'+obs_dataset+'_3sets_diff.png')
+   elif(time_period == 'Monthly'):
+      facet_grid_plot_US(da_plot_merge.sel(Set=['Composite','Set1','Set2','Set3']), 
+                         colplot='Set', rowplot='month', \
+                         cmap_col=cmap_col, cbar_label=myDict_labels[time_period][var], fig_wt=5*4+0.3, fig_ht=5*(len(sum_mon))+0.7, \
+                         fig_extent=fig_extent, show_states=True, fname=fname_abb+'_'+var+'_Model_vs_'+obs_dataset+'_3sets_diff.png')
+
+   # Compute percent difference between set and composite set
+   da_plot_merge.loc[:,'Composite',:,:] = 100 * (da_plot_merge.loc[:,'Composite',:,:] / da_plot_merge.loc[:,obs_dataset,:,:])
+   da_plot_merge.loc[:,'Set1',:,:] = 100 * (da_plot_merge.loc[:,'Set1',:,:] / da_plot_merge.loc[:,obs_dataset,:,:])
+   da_plot_merge.loc[:,'Set2',:,:] = 100 * (da_plot_merge.loc[:,'Set2',:,:] / da_plot_merge.loc[:,obs_dataset,:,:])
+   da_plot_merge.loc[:,'Set3',:,:] = 100 * (da_plot_merge.loc[:,'Set3',:,:] / da_plot_merge.loc[:,obs_dataset,:,:])
+
+   # Plot after dropping observations from dataset
+   cmap_col = 'bwr'
+   if(time_period == 'Annual'):
+      output.write('Average % difference between ' + obs_dataset + ' Composite set for ' + \
+                   var + ' '  + str(round(np.nanmean(da_plot_merge.sel(Set=['Composite']).values),2)) + '\n')
+      output.write('Average % difference between ' + obs_dataset + ' Set1 set for ' + \
+                   var + ' '  + str(round(np.nanmean(da_plot_merge.sel(Set=['Set1']).values),2)) + '\n')
+      output.write('Average % difference between ' + obs_dataset + ' Set2 set for ' + \
+                   var + ' '  + str(round(np.nanmean(da_plot_merge.sel(Set=['Set2']).values),2)) + '\n')
+      output.write('Average % difference between ' + obs_dataset + ' Set3 set for ' + \
+                   var + ' '  + str(round(np.nanmean(da_plot_merge.sel(Set=['Set3']).values),2)) + '\n')
+      output.write('Absolute average % difference between ' + obs_dataset + ' Composite set for ' + \
+                   var + ' '  + str(round(np.nanmean(np.absolute(da_plot_merge.sel(Set=['Composite']).values)),2)) + '\n')
+      output.write('Absolute average % difference between ' + obs_dataset + ' Set1 set for ' + \
+                   var + ' '  + str(round(np.nanmean(np.absolute(da_plot_merge.sel(Set=['Set1']).values)),2)) + '\n')
+      output.write('Absolute average % difference between ' + obs_dataset + ' Set2 set for ' + \
+                   var + ' '  + str(round(np.nanmean(np.absolute(da_plot_merge.sel(Set=['Set2']).values)),2)) + '\n')
+      output.write('Absolute average % difference between ' + obs_dataset + ' Set3 set for ' + \
+                   var + ' '  + str(round(np.nanmean(np.absolute(da_plot_merge.sel(Set=['Set3']).values)),2)) + '\n')
+      output.close()
+      facet_plot_US(da_plot_merge.sel(Set=['Composite','Set1','Set2','Set3']), subplot_titles='', colplot='Set', colwrap=4, \
+                    cmap_col=cmap_col, cbar_label='% difference', fig_wt=5*4, fig_ht=8, \
+                    fig_extent=fig_extent, show_states=True, fname=fname_abb+'_'+var+'_Model_vs_'+obs_dataset+'_3sets_per_diff.png')
+   elif(time_period == 'Monthly'):
+      facet_grid_plot_US(da_plot_merge.sel(Set=['Composite','Set1','Set2','Set3']), 
+                         colplot='Set', rowplot='month', \
+                         cmap_col=cmap_col, cbar_label='% difference', fig_wt=5*4+0.3, fig_ht=5*(len(sum_mon))+0.7, \
+                         fig_extent=fig_extent, show_states=True, fname=fname_abb+'_'+var+'_Model_vs_'+obs_dataset+'_3sets_per_diff.png')

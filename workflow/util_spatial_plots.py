@@ -37,7 +37,7 @@ def xr_plot(da_plot, cbar_label, fname, xy_df=pd.DataFrame()):
 
     cust_cmap = ListedColormap(['mistyrose','lightyellow','lightcyan'], name='from_list', N=None)
 
-    fig, axis = plt.subplots(1, 1, figsize=(8, 8), 
+    fig, axis = plt.subplots(1, 1, figsize=(8, 8),
                              subplot_kw=dict(projection=ccrs.LambertConformal(central_longitude=-95, central_latitude=37.5)))
 
     da_plot.plot(ax           = axis, 
@@ -73,7 +73,8 @@ def xr_plot(da_plot, cbar_label, fname, xy_df=pd.DataFrame()):
                       transform           = ccrs.PlateCarree())
 
     # Add additional features like coastline, oceans, and lakes
-    axis.add_feature(cfeature.LAKES,  edgecolor='black')
+    axis.add_feature(cfeature.LAND, facecolor ='gainsboro') # To add a background grey color
+    axis.add_feature(cfeature.LAKES, edgecolor='black')
     axis.add_feature(cfeature.STATES, edgecolor='black')
 
     # Add gridlines
@@ -104,7 +105,7 @@ def xr_plot_US(da_plot, plot_title, cmap_col, cbar_label, fig_wt, fig_ht, fig_ex
                       cbar_kwargs = {'label':       cbar_label,
                                      'orientation': 'horizontal',
                                      'shrink':      0.8,
-                                     'aspect':      20,
+                                     'aspect':      30,
                                      'pad':         0.02, # fraction of original axes between colorbar and new image axes
                       },
                       cmap        = cmap_col)
@@ -115,6 +116,7 @@ def xr_plot_US(da_plot, plot_title, cmap_col, cbar_label, fig_wt, fig_ht, fig_ex
     # Add additional features like coastline, oceans, and lakes
     fg.axes.coastlines()
     fg.axes.add_feature(cfeature.OCEAN)
+    fg.axes.add_feature(cfeature.LAND, facecolor ='gainsboro') # To add a background grey color
     fg.axes.add_feature(cfeature.LAKES, edgecolor='black')
     if(show_states):
        fg.axes.add_feature(cfeature.STATES, edgecolor='black')
@@ -204,7 +206,7 @@ def facet_plot_US(da_plot, subplot_titles, colplot, colwrap, cmap_col, cbar_labe
     for ax in fg.axes.flat:
 
        # Modify column title
-       if (colplot in ['month', 'Set', 'pft', 'col']):
+       if (colplot in ['month', 'Set', 'pft', 'col','cft']):
            if ax.get_title():
                tmp = ax.get_title().split('=')[1]
                if(colplot in ['month', 'pft', 'col']):
@@ -224,6 +226,7 @@ def facet_plot_US(da_plot, subplot_titles, colplot, colwrap, cmap_col, cbar_labe
     # Add additional features like coastlines, ocean, and lakes
     fg.map(lambda: plt.gca().coastlines())
     fg.map(lambda: plt.gca().add_feature(cfeature.OCEAN))
+    fg.map(lambda: plt.gca().add_feature(cfeature.LAND, facecolor ='gainsboro')) # To add a background grey color
     fg.map(lambda: plt.gca().add_feature(cfeature.LAKES, edgecolor='black'))
     if(show_states):
        fg.map(lambda: plt.gca().add_feature(cfeature.STATES, edgecolor='black'))
@@ -295,6 +298,7 @@ def facet_grid_plot_US(da_plot, colplot, rowplot, cmap_col, cbar_label, fig_wt, 
     # Add additional features like coastlines, ocean, and lakes
     fg.map(lambda: plt.gca().coastlines())
     fg.map(lambda: plt.gca().add_feature(cfeature.OCEAN))
+    fg.map(lambda: plt.gca().add_feature(cfeature.LAND, facecolor ='gainsboro')) # To add a background grey color
     fg.map(lambda: plt.gca().add_feature(cfeature.LAKES, edgecolor='black'))
     if(show_states):
         fg.map(lambda: plt.gca().add_feature(cfeature.STATES, edgecolor='black'))
@@ -389,6 +393,7 @@ def plot_xa_gpd(da_plot, geo_data, cmap_col, cbar_label, fig_wt, fig_ht, fname):
    # Add additional features like coastline, oceans, and lakes
    for i, ax in enumerate([ax1, ax3]):
       ax.coastlines()
+      ax.add_feature(cfeature.LAND, facecolor ='gainsboro') # To add a background grey color
       ax.add_feature(cfeature.LAKES, edgecolor='black')
       ax.add_feature(cfeature.STATES, edgecolor='black')
 
@@ -452,6 +457,7 @@ def plot_xa_model_obs(da_plot, da_obs, cbar_label, fig_wt, fig_ht, fname):
    # Add additional features like coastline, oceans, and lakes
    for i, ax in enumerate([ax1, ax2, ax3]):
        ax.coastlines()
+       ax.add_feature(cfeature.LAND, facecolor ='gainsboro') # To add a background grey color
        ax.add_feature(cfeature.LAKES, edgecolor='black')
        ax.add_feature(cfeature.STATES, edgecolor='black')
 

@@ -55,8 +55,12 @@ myDict_merge_3images = {'fig_regional_Annual_GPP.png': {'im1': 'fig_regional_Ann
 
 myDict_merge_2images_vert = {'fig_regional_GPP_Model_vs_FluxCom.png':      {'im1': 'fig_regional_Annual_GPP_Model_vs_FluxCom_Default.png',
                                                                             'im2': 'fig_regional_Annual_GPP_Model_vs_FluxCom_Default_per_diff.png'},
+                             'fig_regional_GPP_Model_vs_FluxCom_3sets.png': {'im1': 'fig_regional_Annual_GPP_Model_vs_FluxCom_3sets.png',
+                                                                            'im2': 'fig_regional_Annual_GPP_Model_vs_FluxCom_3sets_per_diff.png'},
                              'fig_regional_GPP_Model_vs_Madani_et_al.png': {'im1': 'fig_regional_Annual_GPP_Model_vs_Madani_et_al_Default.png',
-                                                                            'im2': 'fig_regional_Annual_GPP_Model_vs_Madani_et_al_Default_per_diff.png'}}
+                                                                            'im2': 'fig_regional_Annual_GPP_Model_vs_Madani_et_al_Default_per_diff.png'},
+                             'fig_regional_GPP_Model_vs_Madani_et_al_3sets.png': {'im1': 'fig_regional_Annual_GPP_Model_vs_Madani_et_al_3sets.png',
+                                                                                  'im2': 'fig_regional_Annual_GPP_Model_vs_Madani_et_al_3sets_per_diff.png'}}
 myDict_merge_2images_horiz = {'fig_SA_US-Ne3.png':                {'im1':'US-Ne3_Corn_sens_main_all.png',
                                                                    'im2':'US-Ne3_Soybean_sens_main_all.png'},
                               'fig_SA_US-Ro1.png':                {'im1':'US-Ro1_Corn_sens_main_all.png',

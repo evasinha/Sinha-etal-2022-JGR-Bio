@@ -35,6 +35,7 @@ def create_plot_composite(da_plot_merge, var, time_period, fname_abb):
          # Make plot comparing composite and default set to observations
          plot_model_obs_flux(da_plot_merge, var, time_period, fname_abb, obs_dataset, comp_set='Default')
          plot_model_obs_flux(da_plot_merge, var, time_period, fname_abb, obs_dataset, comp_set='No_rot_Composite')
+         plot_model_obs_flux_3sets(da_plot_merge, var, time_period, fname_abb, obs_dataset)
 
    if (var == 'NPP'):
 
@@ -44,6 +45,7 @@ def create_plot_composite(da_plot_merge, var, time_period, fname_abb):
          # Make plot comparing composite and default set to observations
          plot_model_obs_flux(da_plot_merge, var, time_period, fname_abb, obs_dataset, comp_set='Default')
          plot_model_obs_flux(da_plot_merge, var, time_period, fname_abb, obs_dataset, comp_set='No_rot_Composite')
+         plot_model_obs_flux_3sets(da_plot_merge, var, time_period, fname_abb, obs_dataset)
 
    # Drop the Default set
    da_plot_merge = da_plot_merge.drop_sel(Set = 'Default')

@@ -117,9 +117,9 @@ xr_plot_global(hist_trans, fig_wt=11, fig_ht=8.5, fname='hist_trans_c4ann_to_c3n
 # Subset LUH2 data to US extent
 hist_trans = hist_trans.sel(lsmlon=slice(240, 290), lsmlat=slice(50,25))
 cmap_col = 'jet'
-plot_title = 'Corn soybean rotation fraction'
-xr_plot_US(hist_trans, plot_title=plot_title, cmap_col=cmap_col, cbar_label='Area fraction', \
-           fig_wt=6.5, fig_ht=6.5, fig_extent=fig_extent, show_states=True, fname='hist_trans_US_c4ann_to_c3nfx_gt_5per.png')
+plot_title = 'Corn soybean rotation'
+xr_plot_US(hist_trans, plot_title=plot_title, cmap_col=cmap_col, cbar_label='Fraction of grid with crop rotation', \
+           fig_wt=6.0, fig_ht=6.0, fig_extent=fig_extent, show_states=True, fname='hist_trans_US_c4ann_to_c3nfx_gt_5per.png')
 
 # Identify grid cells where c4ann_to_c3nfx transition is greater than 5%
 landuse_ts = landuse_ts.where(hist_trans > 0.05, drop=True)
@@ -127,7 +127,7 @@ landuse_ts = landuse_ts.where(hist_trans > 0.05, drop=True)
 # Create facet plot showing summer months in different columns
 plot_data = landuse_ts.sel(cft = landuse_ts.cft.isin([17, 23]))
 plot_data = plot_data.assign_coords(cft = ['corn','soybean'])
-facet_plot_US(plot_data, subplot_titles='', colplot='cft', colwrap=2, cmap_col=cmap_col, cbar_label='% crop functional type',\
+facet_plot_US(plot_data, subplot_titles='', colplot='cft', colwrap=2, cmap_col=cmap_col, cbar_label='% area within cropland unit',\
               fig_wt=5*2, fig_ht=8, fig_extent=fig_extent, show_states=True, fname='corn_soybean_cft_percent.png')
 
 # Create modified landuse timeseries with corn soybean rotation
