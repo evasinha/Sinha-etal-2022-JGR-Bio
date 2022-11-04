@@ -7,6 +7,7 @@ import matplotlib as mpl
 mpl.use('Agg')
 import numpy as np
 import pandas as pd
+import seaborn as sns
 import xarray as xr
 from itertools import cycle
 
@@ -235,6 +236,67 @@ def plot_ts_valid_lai(ds_model, var, obs_data, plot_col, ylabel, title, site, fn
     os.chdir('../workflow/')
 
 #----------------------------------------------------------
+def plot_ts_valid_lai_2(ds_model, var, obs_data, plot_col, ylabel, title, site, fname):
+    """Plot timeseries from input xarray
+        :param: ds_model:      model data xarray
+        :param: obs_data:        observation data pandas dataframe
+        :param: title:        variable title for plotting
+        :param: site:          site id for plotting
+        :param: fname:         file name prefix
+    """
+    # Plot model and observations
+    parameters = {'figure.titlesize':20,
+                  'legend.fontsize':20,
+                  'axes.labelsize':20,
+                  'axes.titlesize':20,
+                  'xtick.labelsize':20,
+                  'ytick.labelsize':20,
+                  'figure.figsize' : (17, 8.5)}
+
+    plt.rcParams.update(parameters)
+
+    # Change directory
+    os.chdir('../figures/')
+
+    # Plot model and observations
+    fig, ax = plt.subplots()
+
+    ds_model     = ds_model[var]
+
+    # Convert CFTimeIndex to DatetimeIndex
+    # This will ensure that both observations and modeled have same time units
+    # https://stackoverflow.com/questions/55786995/converting-cftime-datetimejulian-to-datetime
+    ds_model['time'] = ds_model.indexes['time'].to_datetimeindex()
+
+    # Convert object to datetime
+    obs_data.Date = pd.to_datetime(obs_data.Date)
+
+    plt.xlim(min(ds_model.time), max(ds_model.time))
+
+    ds_model.plot(ax=ax, color='black', linewidth=1.0, label='Modeled')
+    groups = obs_data.groupby('Crop')
+    for name, group in groups:
+        ax.plot(group.Date, group[plot_col], marker='o', linestyle='', markersize=8, label=name.title())
+
+    ax.set_xlabel('')
+    ax.set_ylabel(ylabel)
+    ax.legend(loc='lower right')
+    plt.xticks(rotation = 0, horizontalalignment='center')
+
+    ax.text(0.90, 0.95, site,  color='black', transform=ax.transAxes, fontsize=20, bbox=dict(facecolor='white', edgecolor='white'))
+
+    # Define the month format
+    ax.xaxis.set_major_locator(mdates.YearLocator(base=1))
+    ax.xaxis.set_major_formatter(DateFormatter('%Y'))
+
+    plt.savefig(fname, bbox_inches='tight')
+
+    plt.close(fig=None)
+
+    # Change directory
+    os.chdir('../workflow/')
+
+#----------------------------------------------------------
 def plot_valid_CRPYLD(ds_model, obs_data, plot_col, ylabel, title, site, fname):
     """Plot timeseries from input xarray
         :param: ds_model:      model data xarray
@@ -270,4 +332,50 @@ def plot_valid_CRPYLD(ds_model, obs_data, plot_col, ylabel, title, site, fname):
     plt.close(fig=None)
 
     # Change directory    
+    os.chdir('../workflow/')
+
+#----------------------------------------------------------
+def plot_valid_CRPYLD_barplot(ds_model, obs_data, plot_col, ylabel, site, fname):
+    """Plot timeseries from input xarray
+        :param: ds_model:      model data xarray
+        :param: obs_data:        observation data pandas dataframe
+        :param: title:        variable title for plotting
+        :param: site:          site id for plotting
+        :param: fname:         file name prefix
+    """
+    # Change directory
+    os.chdir('../figures/')
+
+    # Row bind into a single data frame
+    data_plot = pd.concat([ds_model, obs_data])
+
+    # Sort data
+    data_plot = data_plot.sort_values(by=['Year', 'Crop'])
+
+    col_palette = {'Observed':'silver', 'Modeled':'tomato'}
+
+    plt.xlim(-0.5, 13.5)
+
+    # ----- Make bar plot -----
+    g = sns.barplot(data=data_plot, x='Year', y=plot_col, hue='Desc', palette=col_palette)
+
+    # Modify axis labels
+    g.set(xlabel='', ylabel=ylabel)
+
+    # Insert background shading
+    for i in range(0, 14, 2):
+       plt.axvspan(i-0.5, i+.5, facecolor='yellow', alpha=0.15, zorder=-100)
+    for i in range(1, 14, 2):
+       plt.axvspan(i-0.5, i+.5, facecolor='cyan', alpha=0.15, zorder=-100)
+
+    # Move legend to bottom
+    sns.move_legend(g, 'upper left', title=None)
+
+    g.text(0.90, 0.95, site,  color='black', transform=g.transAxes, fontsize=20, bbox=dict(facecolor='white', edgecolor='white'))
+
+    plt.savefig(fname, bbox_inches='tight')
+
+    plt.close(fig=None)
+
+    # Change directory
     os.chdir('../workflow/')

@@ -104,7 +104,7 @@ def plot_ts_model_obs_all_yrs(ds_model, ds_obs, varnames, site, ylabel, conv_fac
 
         ax.text(0.90, 0.95, site,  color='black', transform=ax.transAxes, fontsize=18, bbox=dict(facecolor='white', edgecolor='white'))
  
-        plt.savefig(fname + '_' +  var + '_all_years.pdf', bbox_inches='tight')
+        plt.savefig(fname + '_' +  var + '_all_years.png', bbox_inches='tight')
 
         plt.close(fig)
 
@@ -215,7 +215,7 @@ def plot_annual_barplot(ds_model, ds_obs, soybean_yrs, varnames, site, ylabel, c
 
            g.text(0.90, 0.95, site,  color='black', transform=g.transAxes, fontsize=20, bbox=dict(facecolor='white', edgecolor='white'))
 
-           plt.savefig(fname + '_annual_boxplot' +  var + '.png', bbox_inches='tight')
+           plt.savefig(fname + '_annual_boxplot_' +  var + '.png', bbox_inches='tight')
 
            plt.close(fig=None)
 

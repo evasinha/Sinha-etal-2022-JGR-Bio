@@ -199,3 +199,58 @@ plot_col = 'growing_season'
 ylabel   = 'Growing season length [days]'
 
 plot_valid_CRPYLD(df_model_dates, obs_data, plot_col, ylabel, title, site, fname=options.fnamepre+ '_valid_growing_season.png')
+
+# ---------- LAI showing corn and soybean year in same plot ----------
+# Read names of output variables and conversion factor
+rotation_yrs = pd.read_csv('../info_obsdata/' + options.site + '_corn_soybean_rotation_years.csv', comment='#')
+crop_yrs     = pd.concat([rotation_yrs['corn'], rotation_yrs['soybean']]).dropna().astype(int)
+
+# Read ELM validation model output for specified case and year range and subset for variables
+var      = 'TLAI'
+ds_model = read_valid_model_data(options.rundir, options.caseid, crop_yrs, varnames=[var])
+
+fname = options.site + '_LAI.csv'
+
+# Site observations file path and file name
+obs_data = pd.read_csv(fpath + fname)
+
+# Since LAI and harvest were never used for calibration observed LAI and harvest for all years is shown
+obs_data = obs_data[(obs_data.Site == site)]
+
+plot_col = 'LAI_avg'
+ylabel = 'TLAI'
+
+plot_ts_valid_lai_2(ds_model, var, obs_data, plot_col, ylabel, title, site, fname=options.fnamepre+ '_valid_lai_2.png')
+
+# ---------- Harvest ----------
+# Read ELM model output for specified case and year range and subset for variables
+ds_model = read_valid_model_data(options.rundir, options.caseid, crop_yrs, varnames=['CRPYLD'])
+
+# Convert to pandas dataframe for writing csv file
+df_model = ds_model.to_dataframe()
+
+# Estimate maximum yield for each year
+model_dmyield = df_model.groupby(df_model.index.year).max()
+model_dmyield = model_dmyield.reset_index().rename(columns={'index':'Year'})
+
+# Add site and crop information
+model_dmyield['Desc'] = 'Modeled'
+model_dmyield['Site'] = site
+model_dmyield['Crop'] = 'corn'
+model_dmyield.loc[model_dmyield['Year'].isin(rotation_yrs['soybean'].tolist()), 'Crop'] = 'soybean'
+
+# Site observations file path and file name
+fname = options.site + '_harvest.csv'
+obs_data = pd.read_csv(fpath + fname)
+
+# Since LAI and harvest were never used for calibration we can show observed LAI and harvest for all years
+obs_data = obs_data[(obs_data.Site == site)]
+
+# Rename column
+obs_data = obs_data.rename(columns={'harvest_bu_acre': 'CRPYLD'})
+obs_data['Desc'] = 'Observed'
+
+plot_col = 'CRPYLD'
+ylabel = 'Harvest [$\mathregular{bu~acre^{-1}}$]'
+
+plot_valid_CRPYLD_barplot(model_dmyield, obs_data, plot_col, ylabel, site, fname=options.fnamepre+'_valid_harv_2.png')

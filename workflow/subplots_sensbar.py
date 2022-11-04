@@ -105,6 +105,7 @@ for ind, key in enumerate(myDict):
 
 # make bar plot
 g = sns.catplot(data=df_plot, x='pnames', y='value', row='QoI',  kind='bar', palette=colors, height=3, aspect=2)
+#g = sns.catplot(data=df_plot, x='pnames', y='value', row='QoI',  kind='bar', errorbar='sd',  palette=colors, height=3, aspect=2)
 
 # Rotate xtick labels
 g.set_xticklabels(labels=pnames, rotation=90)

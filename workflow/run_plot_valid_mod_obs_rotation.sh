@@ -17,8 +17,10 @@ do
 
       python plot_valid_mod_obs_rotation.py --site ${SITE} --crop ${CROP} --rundir ${RUN_DIR} --caseid ${CASEID} --obsdir ${OBSDIR} --obsfname ${OBSFNAME}  --fnamepre ${FNAMEPRE}_${CROP}
 
-      export OBSFNAME=${SITE}_all_yrs_select_var.nc
-      python plot_mod_obs_all_yrs.py --site ${SITE} --rundir ${RUN_DIR} --caseid ${CASEID} --obsdir ${OBSDIR} --obsfname ${OBSFNAME}  --fnamepre ${FNAMEPRE}_${CROP}
+      if [ '${CROP}' = 'corn' ]; then
+         export OBSFNAME=${SITE}_all_yrs_select_var.nc
+         python plot_mod_obs_all_yrs.py --site ${SITE} --rundir ${RUN_DIR} --caseid ${CASEID} --obsdir ${OBSDIR} --obsfname ${OBSFNAME}  --fnamepre ${FNAMEPRE}
+      fi
 
    done
 done
