@@ -155,13 +155,20 @@ def reshape_time_dim(output_reshape_cropwts, mod_ds, pftname):
 
 # -----------------------------------------------------------
 # Read ELM h1 output file containing output in 1D vector format
-caseid = '20220512_20x34_corn_soy_rot_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20220512_20x34_corn_soy_rot_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans'
 #caseid = '20220512_20x34_corn_soy_rot_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans'
 #caseid = '20220512_20x34_corn_soy_rot_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans'
 #caseid = '20220512_20x34_corn_soy_rot_default_param_ELM_USRDAT_ICBELMCNCROP_trans'
 #caseid = '20220609_20x34_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans'
 #caseid = '20220609_20x34_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans'
 #caseid = '20220609_20x34_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20230114_20x34_corn_soy_rot_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans'
+caseid = '20230114_20x34_corn_soy_rot_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20230114_20x34_corn_soy_rot_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20230114_20x34_corn_soy_rot_default_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20230114_20x34_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20230114_20x34_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20230114_20x34_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans'
 
 fpath  = '/compyfs/sinh210/e3sm_scratch/' + caseid + '/run/'
 
@@ -185,7 +192,7 @@ sel_lon = 263.5234
 sel_lat = 41.1651
 
 yr_start = 2001
-yr_end   = 2014
+yr_end   = 2010
 mod_ds   = read_col_lev_model_output(yr_start, yr_end, fpath, caseid)
 
 for ind, var in enumerate(varnames):
@@ -200,9 +207,6 @@ for ind, var in enumerate(varnames):
    #fname = '/compyfs/sinh210/mygetregionaldata/landuse.timeseries_20x34pt_f19_US_Midwest_sub_cru_hist_50pfts_c220413.nc'
    lu_ts = xr.open_mfdataset(fname)
 
-   print('variable is ', var)
-   print(output_reshape.interp(years=2005, month=7, lat=sel_lat, lon=sel_lon).values)
-
    #output_reshape_cropwts = output_reshape
    if(var == 'GPP'):
        # Apply crop weight mask to cfts
@@ -210,8 +214,6 @@ for ind, var in enumerate(varnames):
    else:
        # Skip applying crop weight masks to cfts
        output_reshape_cropwts = output_reshape
-
-   print(output_reshape_cropwts.interp(years=2005, month=7, lat=sel_lat, lon=sel_lon).values)
 
    # Reshape years x month to time dimension
    # Reshape years x month to time dimension

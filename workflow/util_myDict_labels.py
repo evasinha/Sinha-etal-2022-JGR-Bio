@@ -28,6 +28,10 @@ CONV_umolCO2_gC = 1.03775
 conv_factor = {'GPP':        CONV_SEC_DAY,
                'ER':         CONV_SEC_DAY,
                'NEE':        CONV_SEC_DAY,
+               'NPP':        CONV_SEC_DAY,
+               'NBP':        CONV_SEC_DAY,
+               'TOTECOSYSC': 1,
+               'TOTSOMC':    1,
                'EFLX_LH_TOT': 1,
                'FSH':         1,
                'TLAI':        1}
@@ -38,13 +42,21 @@ obs_conv_factor = {'GPP':         1/CONV_umolCO2_gC,
                    'EFLX_LH_TOT': 1}
 
 # Dictionary for three cases
-myDict_caseid = {'Set1'        :'20220512_20x34_corn_soy_rot_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans',
-                 'Set2'        :'20220512_20x34_corn_soy_rot_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans',
-                 'Set3'        :'20220512_20x34_corn_soy_rot_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans',
-                 'Default'     :'20220512_20x34_corn_soy_rot_default_param_ELM_USRDAT_ICBELMCNCROP_trans',
-                 'Set1_no_rot' :'20220609_20x34_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans',
-                 'Set2_no_rot' :'20220609_20x34_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans',
-                 'Set3_no_rot' :'20220609_20x34_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans'}
+#myDict_caseid = {'Set1'        :'20220512_20x34_corn_soy_rot_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans',
+#                 'Set2'        :'20220512_20x34_corn_soy_rot_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans',
+#                 'Set3'        :'20220512_20x34_corn_soy_rot_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans',
+#                 'Default'     :'20220512_20x34_corn_soy_rot_default_param_ELM_USRDAT_ICBELMCNCROP_trans',
+#                 'Set1_no_rot' :'20220609_20x34_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans',
+#                 'Set2_no_rot' :'20220609_20x34_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans',
+#                 'Set3_no_rot' :'20220609_20x34_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans'}
+
+myDict_caseid = {'Set1'        :'20230114_20x34_corn_soy_rot_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans',
+                 'Set2'        :'20230114_20x34_corn_soy_rot_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans',
+                 'Set3'        :'20230114_20x34_corn_soy_rot_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans',
+                 'Default'     :'20230114_20x34_corn_soy_rot_default_param_ELM_USRDAT_ICBELMCNCROP_trans',
+                 'Set1_no_rot' :'20230114_20x34_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans',
+                 'Set2_no_rot' :'20230114_20x34_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans',
+                 'Set3_no_rot' :'20230114_20x34_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans'}
 
 sum_mon     = [6,7,8,9]
 sum_mon_str = ['June', 'July', 'August', 'September']

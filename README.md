@@ -101,3 +101,4 @@ Use the following scripts found in the `workflow` directory to reproduce the fig
 10. [Comparison of simulated and observed annual GPP at AmeriFlux calibration/validation sites](figures/Sitelevel_Annual_GPP_pft.png)
 11. [Comparison of simulated and observed monthly GPP at AmeriFlux calibration/validation sites](figures/Sitelevel_GPP_pft_lineplot.png)
 12. [Comparison of simulated and observed monthly latent heat flux at AmeriFlux calibration/validation sites](figures/Sitelevel_EFLX_LH_TOT_pft_lineplot.png)
+13. [Comparing simulated annual GPP for Composite, Set1, Set2, and Set3 to FluxCom estimates](figures/fig_regional_GPP_Model_vs_FluxCom_3sets.png)

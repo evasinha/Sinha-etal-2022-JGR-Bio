@@ -26,15 +26,17 @@ def bar_plot(site_data, ylabel, fname):
     # Change directory    
     os.chdir('../figures/')
 
-    fig, axis = plt.subplots(1, 1, figsize=(14, 8)) 
+    color = ['silver','mediumseagreen','palegreen','lightsalmon','lightskyblue','bisque']
+
+    fig, axis = plt.subplots(1, 1, figsize=(14, 7))
 
     x_axis = np.arange(len(site_data))
 
-    site_data[['Observed','Set1','Set2','Set3','Default','Composite']].plot.bar(rot = 0)
+    site_data[['Observed','Default','Composite','Set1','Set2','Set3']].plot.bar(rot = 0, color=color)
 
     plt.xticks(x_axis, site_data.SiteID)
     plt.ylabel(ylabel)
-    plt.legend(loc='upper left', bbox_to_anchor=(0.0, -0.05), ncol=5)
+    plt.legend(loc='upper left', bbox_to_anchor=(0.0, -0.05), ncol=6)
 
     plt.savefig(fname, bbox_inches='tight')
 
@@ -50,14 +52,15 @@ def bar_subplots(site_data_1, site_data_2, title_1, title_2, ylabel, fname):
     # Change directory    
     os.chdir('../figures/')
 
+    #color = ['silver','mediumseagreen','palegreen','lightsalmon','lightskyblue','bisque']
     color = ['silver','mediumseagreen','palegreen']
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 7), sharey=True)
 
     x_axis = np.arange(len(site_data_1))
 
-    #site_data_1[['Observed','Set1','Set2','Set3','Default','Composite']].plot.bar(ax=ax1, rot = 0)
-    #site_data_2[['Observed','Set1','Set2','Set3','Default','Composite']].plot.bar(ax=ax2, rot = 0)
+    #site_data_1[['Observed','Default','Composite','Set1','Set2','Set3']].plot.bar(ax=ax1, rot = 0, color=color)
+    #site_data_2[['Observed','Default','Composite','Set1','Set2','Set3']].plot.bar(ax=ax2, rot = 0, color=color)
     site_data_1[['Observed','Default','Composite']].plot.bar(ax=ax1, rot = 0, color=color)
     site_data_2[['Observed','Default','Composite']].plot.bar(ax=ax2, rot = 0, color=color)
 
@@ -66,7 +69,7 @@ def bar_subplots(site_data_1, site_data_2, title_1, title_2, ylabel, fname):
     ax1.set_ylabel(ylabel)
 
     handles, labels = ax1.get_legend_handles_labels()
-    fig.legend(handles, labels, loc='center', bbox_to_anchor=(0.5, 0), ncol=5)
+    fig.legend(handles, labels, loc='center', bbox_to_anchor=(0.5, 0), ncol=6)
 
     ax1.get_legend().remove()
     ax2.get_legend().remove()
@@ -272,3 +275,98 @@ def plot_ts_table_annual(da, ds_plantday, ds_harvestday, ylabel, key, fname, sel
 
    # Change directory
    os.chdir('../workflow/')
+
+# -----------------------------------------------------------
+# Make facet line plot of the xarray dataset
+def xarray_facet_line_plot(ds_plot, facet_col, xlabel, ylabel, fname, xmin, xmax, hue_var=None, col_wrap=None, xvline=None, sharey=True):
+
+   # Change directory    
+   os.chdir('../figures/')
+
+   fg = ds_plot.plot(col        = facet_col, 
+                     hue        = hue_var,
+                     col_wrap   = col_wrap, 
+                     xlim       = (xmin,xmax), 
+                     sharey     = sharey,
+                     aspect     = 1.5,
+                     add_legend = False)
+
+   # https://cduvallet.github.io/posts/2018/11/facetgrid-ylabel-access
+   # Iterate thorugh each axis
+   for ax in fg.axes.flat:
+      # Modify column title
+      if ax.get_title():
+         subplot_title = ax.get_title().split('=')[1]
+         subplot_title = subplot_title.strip()
+         if (facet_col in ['pft','cft']):
+            ax.set_title(pft_names[subplot_title], fontsize=15)
+            #ax.set_title(subplot_title, fontsize=15)
+         else:
+            ax.set_title(subplot_title, fontsize=15)
+
+      if(xvline is not None):
+         # Add a vertical line at specified x
+         ax.axvline(x=xvline, color='red', linestyle=':')
+
+   # Add axis labels
+   fg.set_axis_labels(x_var=xlabel, y_var=ylabel)
+
+   # Move legend to bottom
+   #fg.add_legend(ncol=2, bbox_to_anchor=(0.5, -0.01))
+
+   plt.savefig(fname, bbox_inches='tight')
+
+   plt.close(fig=None)
+    
+   # Change directory    
+   os.chdir('../workflow/')
+    
+# -----------------------------------------------------------
+# Make facet grid line plot for the xarray dataset
+def xarray_facet_grid_line_plot(ds_plot, facet_row, facet_col, xvline, xlabel, ylabel, fname):
+
+   # Change directory    
+   os.chdir('../figures/')
+
+   fg = ds_plot.plot(row=facet_row, col=facet_col, sharey='row')
+
+   # https://cduvallet.github.io/posts/2018/11/facetgrid-ylabel-access
+   # Iterate thorugh each axis
+   for ax in fg.axes.flat:
+
+      # Modify column title
+      if ax.get_title():
+         tmp = ax.get_title().split('=')[1]
+         ax.set_title(tmp, fontsize=15)
+
+      # Modify right ylabel (row title) more human-readable and larger
+      # Only the 2nd and 4th axes have something in ax.texts
+      if ax.texts:
+         # This contains the right ylabel text
+         txt = ax.texts[0]
+         ax.text(txt.get_unitless_position()[0], txt.get_unitless_position()[1],
+                 txt.get_text().split('=')[1],
+                 transform = ax.transAxes,
+                 va        = 'center',
+                 fontsize  = 15,
+                 rotation  = -90)
+         # Remove the original text
+         ax.texts[0].remove()
+
+      # Add a vertical line at specified x
+      ax.axvline(x=xvline, color='red', linestyle=':')
+
+   # Add axis labels
+   fg.set_axis_labels(x_var=xlabel, y_var=ylabel)
+
+   # Define x ticks
+   plt.xticks(np.arange(min(ds_plot.time), max(ds_plot.time)+1, 200))
+
+   plt.savefig(fname, bbox_inches='tight')
+
+   plt.close(fig=None)
+    
+   # Change directory    
+   os.chdir('../workflow/')
+    
+# -----------------------------------------------------------

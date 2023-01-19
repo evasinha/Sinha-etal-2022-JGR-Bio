@@ -130,5 +130,20 @@ plot_data = plot_data.assign_coords(cft = ['corn','soybean'])
 facet_plot_US(plot_data, subplot_titles='', colplot='cft', colwrap=2, cmap_col=cmap_col, cbar_label='% area within cropland unit',\
               fig_wt=5*2, fig_ht=8, fig_extent=fig_extent, show_states=True, fname='corn_soybean_cft_percent.png')
 
+# Plot PCT_CROP
+cmap_col = 'jet'
+plot_title = 'Percent cropland'
+landuse_ts = xr.open_dataset(fpath_surf + fname_surf, decode_times=False)
+landuse_ts = landuse_ts['PCT_CROP']
+
+# Replace zero values with nan
+landuse_ts.values[landuse_ts.values == 0] = np.nan
+
+# Plot PCT_CROP for 1850 and 2010
+xr_plot_US(landuse_ts.isel(time=0), plot_title=plot_title, cmap_col=cmap_col, cbar_label='% of grid with cropland', \
+           fig_wt=6.0, fig_ht=6.0, fig_extent=fig_extent, show_states=True, fname='landuse_ts_PCT_CROP_1850.png')
+xr_plot_US(landuse_ts.isel(time=160), plot_title=plot_title, cmap_col=cmap_col, cbar_label='% of grid with cropland', \
+           fig_wt=6.0, fig_ht=6.0, fig_extent=fig_extent, show_states=True, fname='landuse_ts_PCT_CROP_2010.png')
+
 # Create modified landuse timeseries with corn soybean rotation
 modify_landuse_ts(fpath_surf, fname_surf, hist_trans)

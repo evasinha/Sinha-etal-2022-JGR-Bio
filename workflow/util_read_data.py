@@ -27,6 +27,30 @@ def read_model_output(yr_start, yr_end, fpath, caseid, varnames):
     return(ds)
 
 # -----------------------------------------------------------
+def read_spinup_model_output(yr_start, yr_end, yr_step, fpath, caseid, mon_day_str, varnames, decode_times=True):
+    """Read ELM model output for select variables
+        param: yr_start      start year for reading model output
+        param: yr_end        end year for reading model output
+        param: fpath         directory path
+        param: caseid        model run case id
+        param: varnames      variable name for subsetting
+        :return:             data array with model output
+        """
+
+    # Read names of all NetCDF files within the given year range
+    fnames = []
+    for yr in range(int(yr_start), int(yr_end)+1, yr_step):
+        fnames.append(fpath + '/' + caseid + '.elm.h0.' + str(yr).zfill(4) + mon_day_str + '-00000.nc')
+
+    # Open a multiple netCDF data file and load the data into xarrays
+    with xr.open_mfdataset(fnames, decode_times=decode_times, combine='nested', concat_dim='time', data_vars='minimal') as ds:
+
+        # Only keep select variables in the data array
+        ds = ds[varnames]
+
+    return(ds)
+
+# -----------------------------------------------------------
 def read_col_lev_model_output(yr_start, yr_end, filepath, caseid):
     """Read ELM model output for select variables
     :param: yr_start     start year for reading model output

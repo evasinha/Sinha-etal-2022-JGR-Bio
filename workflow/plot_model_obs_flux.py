@@ -160,7 +160,7 @@ def plot_model_obs_flux(da_plot_merge, var, time_period, fname_abb, obs_dataset,
    # Plot after dropping Composite label from dataset
    cmap_col = 'bwr'
    if(time_period == 'Annual'):
-      output = open('../figures/' + obs_dataset + ' ' + comp_set + '_stats.txt','w')
+      output = open('../figures/' + obs_dataset + '_' + comp_set + '_stats.txt','w')
       output.write('Average difference between ' + obs_dataset + ' ' + comp_set + ' set for ' + \
                    var  + ' ' + str(round(np.nanmean(da_plot_merge.sel(Set=[comp_set]).values),2)) + '\n')
       output.write('Average difference between ' + obs_dataset + ' Composite set for ' + \
@@ -218,6 +218,10 @@ def plot_model_obs_flux_3sets(da_plot_merge, var, time_period, fname_abb, obs_da
    da_plot_merge = da_plot_merge.rename(var)
 
    da_plot_merge = xr.merge([obs_da_plot, da_plot_merge.sel(Set=['Composite','Set1','Set2','Set3'], variable=var)])
+
+   # Write xarray to a new NetCDF file
+   if(time_period == 'Annual'):
+      da_plot_merge.to_netcdf(path='../figures/' + obs_dataset + '_3sets.nc', mode='w')
 
    da_plot_merge = da_plot_merge.to_array()
 

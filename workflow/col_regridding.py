@@ -134,13 +134,20 @@ def reshape_time_dim(output_reshape_cropwts, mod_ds):
 
 # -----------------------------------------------------------
 # Read ELM h1 output file containing output in 1D vector format
-caseid = '20220512_20x34_corn_soy_rot_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20220512_20x34_corn_soy_rot_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans'
 #caseid = '20220512_20x34_corn_soy_rot_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans'
 #caseid = '20220512_20x34_corn_soy_rot_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans'
 #caseid = '20220512_20x34_corn_soy_rot_default_param_ELM_USRDAT_ICBELMCNCROP_trans'
 #caseid = '20220609_20x34_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans'
 #caseid = '20220609_20x34_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans'
 #caseid = '20220609_20x34_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans'
+caseid = '20230114_20x34_corn_soy_rot_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20230114_20x34_corn_soy_rot_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20230114_20x34_corn_soy_rot_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20230114_20x34_corn_soy_rot_default_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20230114_20x34_US-Ne3_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20230114_20x34_US-Ro1_param_ELM_USRDAT_ICBELMCNCROP_trans'
+#caseid = '20230114_20x34_US-UiC_param_ELM_USRDAT_ICBELMCNCROP_trans'
 
 fpath  = '/compyfs/sinh210/e3sm_scratch/' + caseid + '/run/'
 
@@ -154,14 +161,14 @@ fpath  = '/compyfs/sinh210/e3sm_scratch/' + caseid + '/run/'
 # When plotting the whole grid we use ER with the pct_crop and pct_cft weights being applied
 # When plotting outputs to observations for corn/soybean only the percent fraction 
 # is not applied since we are only focussing on the fraction of the grid with corn/soybean on it.
-out_fname = caseid + '_column_regridded.nc'
-#out_fname = caseid + '_column_regridded_weight_applied.nc'
+#out_fname = caseid + '_column_regridded.nc'
+out_fname = caseid + '_column_regridded_weight_applied.nc'
 
-varnames = ['ER', 'TOTCOLC', 'TOTSOMC']
-#varnames = ['ER']
+#varnames = ['ER', 'TOTCOLC', 'TOTSOMC']
+varnames = ['ER']
 
 yr_start = 2001
-yr_end   = 2014
+yr_end   = 2010
 mod_ds   = read_col_lev_model_output(yr_start, yr_end, fpath, caseid)
 
 # Open a restart file to access cols1d_ityp value that is not stored in h1 files
@@ -180,10 +187,10 @@ for ind, var in enumerate(varnames):
    #fname = '/compyfs/sinh210/mygetregionaldata/landuse.timeseries_20x34pt_f19_US_Midwest_sub_cru_hist_50pfts_c220413.nc'
    lu_ts = xr.open_mfdataset(fname)
 
-   output_reshape_cropwts = output_reshape
-   #if(var == 'ER'):
-   #    # Apply crop weight mask to cfts
-   #    output_reshape_cropwts = apply_cropwts_cft(lu_ts, yr_start, yr_end, output_reshape)
+   #output_reshape_cropwts = output_reshape
+   if(var == 'ER'):
+       # Apply crop weight mask to cfts
+       output_reshape_cropwts = apply_cropwts_cft(lu_ts, yr_start, yr_end, output_reshape)
    #else:
    #    # Skip applying crop weight masks to cfts
    #    output_reshape_cropwts = output_reshape
